@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aura.Blush | Aesthetic Identity + Nail Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function(){
+    emailjs.init({ publicKey: "ilpqvl0ONJWliP4uI" });
+  })();
+</script>
+<style>
+:root {
+  --rose:#f4a7b9;--peach:#f9c8a0;--butter:#fde9a2;--mint:#b8e8d0;
+  --acc:#e8728a;--acc2:#f9a26c;--bg:#fff8f5;--surface:rgba(255,255,255,0.72);
+  --border:rgba(232,114,138,0.18);--text:#3d2b35;--muted:rgba(61,43,53,0.5);
+  --radius:20px;--font-head:'Playfair Display',serif;--font-body:'DM Sans',sans-serif;
+  --transition:0.32s cubic-bezier(.4,0,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
+body{background:linear-gradient(135deg,#fff8f5,#fff4f8,#fffaf2);color:var(--text);font-family:var(--font-body);overflow-x:hidden;cursor:none;position:relative}
+
+/* ── HEART CURSOR ── */
+#heart-cursor{position:fixed;pointer-events:none;z-index:99999;width:26px;height:26px;left:0;top:0;transform:translate(-30%,-20%);transition:transform .12s ease;filter:drop-shadow(0 2px 6px rgba(244,114,138,.5))}
+#heart-cursor.clicked{transform:translate(-30%,-20%) scale(1.6)}
+
+/* ── PETAL BG ── */
+.petal-bg{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.petal{position:absolute;opacity:0.15;animation:floatPetal linear infinite;user-select:none}
+@keyframes floatPetal{0%{transform:translateY(105vh) rotate(0deg);opacity:0}10%{opacity:0.18}90%{opacity:0.12}100%{transform:translateY(-8vh) rotate(360deg);opacity:0}}
+.corner-floral{position:fixed;font-size:3.2rem;pointer-events:none;z-index:2;opacity:0.2;animation:sway 5s ease-in-out infinite}
+#cf1{top:8px;left:12px}#cf2{top:8px;right:12px;animation-delay:-1.5s}#cf3{bottom:20px;left:12px;animation-delay:-3s}#cf4{bottom:20px;right:12px;animation-delay:-4s}
+@keyframes sway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+.orb{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;animation:orbFloat 14s ease-in-out infinite}
+#orb1{width:500px;height:500px;background:rgba(244,167,185,.25);top:-120px;right:-100px}
+#orb2{width:380px;height:380px;background:rgba(184,232,208,.22);bottom:-100px;left:-80px;animation-delay:-6s}
+#orb3{width:270px;height:270px;background:rgba(249,200,160,.2);top:40%;left:32%;animation-delay:-10s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(25px,-25px)}}
+
+/* ── TOAST ── */
+#toast-wrap{position:fixed;top:80px;right:24px;z-index:9000;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+.toast{background:rgba(255,248,245,.96);border:1px solid var(--border);padding:13px 18px;border-radius:14px;backdrop-filter:blur(20px);font-size:.84rem;display:flex;align-items:center;gap:10px;animation:toastIn .4s ease;max-width:280px;color:var(--text);box-shadow:0 4px 24px rgba(232,114,138,.15)}
+.toast.out{animation:toastOut .3s ease forwards}
+@keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes toastOut{to{opacity:0;transform:translateX(20px)}}
+
+/* ── SCROLL BAR ── */
+#scroll-indicator{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--rose),var(--peach),var(--butter));z-index:9999;width:0;border-radius:0 2px 2px 0;transition:width .1s}
+
+/* ── BUTTONS ── */
+button{font-family:var(--font-body)}
+.btn{padding:13px 28px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;cursor:none;font-weight:500;font-size:.88rem;letter-spacing:.5px;text-transform:uppercase;transition:var(--transition);box-shadow:0 4px 18px rgba(232,114,138,.3)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(232,114,138,.45)}
+.btn:active{transform:translateY(0)}
+.btn-ghost{background:transparent;border:1.5px solid var(--acc);color:var(--acc);box-shadow:none}
+.btn-ghost:hover{background:rgba(232,114,138,.08);box-shadow:0 4px 18px rgba(232,114,138,.2)}
+.btn:disabled{opacity:.6;transform:none;cursor:not-allowed}
+
+/* ── FIELDS ── */
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.field input,.field textarea,.field select{padding:13px 18px;border-radius:14px;border:1.5px solid var(--border);background:#fff;color:var(--text);font-family:var(--font-body);font-size:.93rem;transition:var(--transition);outline:none;width:100%;cursor:none}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--acc);background:#fff8fa;box-shadow:0 0 0 3px rgba(232,114,138,.1)}
+.field textarea{resize:vertical;min-height:90px}
+.field select option{background:#fff8f5}
+
+/* ══════════════════════════════
+   AUTH SCREEN
+══════════════════════════════ */
+#auth-screen{position:fixed;inset:0;z-index:5000;display:flex;align-items:center;justify-content:center;padding:20px}
+.auth-split{display:grid;grid-template-columns:1fr 1fr;width:min(900px,95vw);min-height:580px;border-radius:30px;overflow:hidden;box-shadow:0 20px 70px rgba(232,114,138,.2);animation:fadeUp .6s ease both}
+.auth-art{background:url('https://i.pinimg.com/1200x/ee/d6/3c/eed63cfc062431980e8c64e895988a5e.jpg') center/cover;position:relative;display:flex;align-items:flex-end;padding:36px}
+.auth-art::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(255,220,230,.12),rgba(249,200,160,.3))}
+.auth-art-tag{position:relative;z-index:2;font-family:var(--font-head);font-size:2.8rem;line-height:1.08;color:white;font-weight:900;text-shadow:0 2px 14px rgba(0,0,0,.3)}
+.auth-box{background:rgba(255,252,250,0.82);backdrop-filter:blur(20px);padding:42px;display:flex;flex-direction:column;justify-content:center}
+.auth-box h2{font-family:var(--font-head);font-size:2.3rem;font-weight:900;color:var(--text);margin-bottom:6px}
+.auth-box .sub{color:var(--muted);font-size:.86rem;margin-bottom:24px}
+.auth-box .field{margin-bottom:14px}
+.auth-error{color:#e11d48;font-size:.78rem;margin:6px 0;display:none}
+.auth-error.show{display:block}
+.switch-text{margin-top:16px;text-align:center;font-size:.82rem;color:var(--muted)}
+.switch-text span{color:var(--acc);cursor:pointer;font-weight:600}
+
+/* SIGNUP PAGE */
+#signup-page{display:none;position:fixed;inset:0;z-index:5000;align-items:center;justify-content:center;padding:20px}
+.signup-box{width:min(470px,95vw);background:rgba(255,252,250,0.88);border:1.5px solid rgba(255,255,255,.35);backdrop-filter:blur(20px);padding:38px;border-radius:28px;box-shadow:0 20px 70px rgba(232,114,138,.18);animation:fadeUp .5s ease both;overflow-y:auto;max-height:90vh}
+.signup-box h2{font-family:var(--font-head);font-size:2.2rem;font-weight:900;margin-bottom:6px}
+.signup-box .sub{color:var(--muted);font-size:.86rem;margin-bottom:20px}
+.signup-box .field{margin-bottom:12px}
+
+/* ══════════════════════════════
+   HEADER
+══════════════════════════════ */
+#main-header{position:fixed;top:0;left:0;right:0;z-index:800;display:none;align-items:center;justify-content:space-between;padding:16px 44px;background:rgba(255,248,245,.92);backdrop-filter:blur(18px);border-bottom:1.5px solid var(--border)}
+.logo{font-family:var(--font-head);font-size:1.5rem;font-weight:900;color:var(--text);letter-spacing:-.5px;cursor:none}
+.logo span{color:var(--acc)}
+#header-clock{font-size:.76rem;color:var(--muted);letter-spacing:1px}
+#header-user{font-size:.8rem;color:var(--acc);padding:5px 14px;border-radius:50px;background:rgba(232,114,138,.1);border:1px solid rgba(232,114,138,.2)}
+
+/* ══════════════════════════════
+   HERO
+══════════════════════════════ */
+#hero-screen{display:none;min-height:100vh;position:relative;z-index:10;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 20px 60px}
+.hero-label{font-size:.72rem;letter-spacing:5px;text-transform:uppercase;color:var(--acc);margin-bottom:24px;animation:fadeUp .8s ease .2s both}
+#hero-screen h1{font-family:var(--font-head);font-size:clamp(3.5rem,9vw,7.5rem);line-height:.95;letter-spacing:-2px;font-weight:900;color:var(--text);animation:fadeUp .8s ease .35s both}
+#hero-screen h1 em{color:var(--acc);font-style:italic}
+.hero-sub{margin-top:20px;color:var(--muted);font-size:.98rem;max-width:380px;line-height:1.75;animation:fadeUp .8s ease .5s both}
+.hero-cta{margin-top:40px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center;animation:fadeUp .8s ease .65s both}
+.hero-stats{margin-top:52px;display:flex;gap:44px;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s ease .8s both}
+.hero-stat-num{font-family:var(--font-head);font-size:2rem;font-weight:900;color:var(--text)}
+.hero-stat-lbl{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:2px}
+#scroll-hint{position:absolute;bottom:32px;font-size:.72rem;letter-spacing:3px;color:var(--muted);text-transform:uppercase;animation:bounce 2.2s ease infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+/* ══════════════════════════════
+   APP SHELL
+══════════════════════════════ */
+#app{display:none;min-height:100vh;flex-direction:row;position:relative;z-index:10}
+#side-nav{width:72px;position:fixed;top:0;bottom:0;left:0;background:rgba(255,252,250,.92);display:flex;flex-direction:column;align-items:center;padding-top:90px;gap:6px;border-right:1.5px solid var(--border);backdrop-filter:blur(12px);z-index:700}
+.nav-item{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;cursor:none;opacity:.35;transition:var(--transition);position:relative}
+.nav-item:hover{opacity:.75;background:rgba(232,114,138,.08)}
+.nav-item.active{opacity:1;background:rgba(232,114,138,.14);border:1.5px solid rgba(232,114,138,.3)}
+.nav-item .tip{position:absolute;left:calc(100% + 12px);background:rgba(255,252,250,.98);border:1px solid var(--border);padding:5px 12px;border-radius:8px;font-size:.74rem;white-space:nowrap;pointer-events:none;opacity:0;transform:translateX(-8px);transition:var(--transition);color:var(--text);box-shadow:0 4px 14px rgba(232,114,138,.12)}
+.nav-item:hover .tip{opacity:1;transform:translateX(0)}
+.content{margin-left:72px;flex:1;padding:90px 44px 40px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.view{display:none;animation:fadeUp .4s ease both}
+.view.active{display:block}
+
+/* ── Section headings ── */
+.sec-head{margin-bottom:32px}
+.sec-label{font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--acc2);margin-bottom:10px}
+.sec-title{font-family:var(--font-head);font-size:clamp(2rem,4vw,2.8rem);font-weight:900;letter-spacing:-.5px;line-height:1;color:var(--text)}
+.sec-title em{font-style:italic;color:var(--acc)}
+.sec-sub{color:var(--muted);margin-top:8px;font-size:.88rem;max-width:480px;line-height:1.7}
+
+/* ══════════════════════════════
+   QUIZ VIEW
+══════════════════════════════ */
+#quiz-prog-bar{height:4px;background:rgba(232,114,138,.12);border-radius:2px;margin-bottom:28px;overflow:hidden}
+#quiz-prog-fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--peach));border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+#quiz-counter{font-size:.72rem;letter-spacing:3px;color:var(--muted);margin-bottom:10px;text-transform:uppercase}
+.opts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-top:4px}
+.opt-card{padding:22px 18px;background:var(--surface);border-radius:var(--radius);border:1.5px solid var(--border);cursor:none;transition:var(--transition);font-size:.88rem;line-height:1.5;backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(232,114,138,.06)}
+.opt-card:hover{transform:translateY(-5px);border-color:rgba(232,114,138,.5);background:rgba(255,255,255,.92);box-shadow:0 8px 28px rgba(232,114,138,.18)}
+.opt-icon{font-size:1.7rem;margin-bottom:10px;display:block}
+
+/* ── Result ── */
+.result-hero{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:34px;background:var(--surface);border-radius:26px;border:1.5px solid var(--border);position:relative;overflow:hidden;margin-bottom:28px;backdrop-filter:blur(10px);box-shadow:0 8px 40px rgba(232,114,138,.12)}
+.result-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(244,167,185,.12),rgba(249,200,160,.08));pointer-events:none}
+.result-tag{font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--acc);margin-bottom:10px}
+.result-name{font-family:var(--font-head);font-size:3rem;letter-spacing:-.5px;font-weight:900;line-height:1;color:var(--text)}
+.result-desc{color:var(--muted);margin-top:12px;line-height:1.7;font-size:.9rem}
+.nail-recs-label{font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--acc);margin-top:18px;margin-bottom:8px}
+.nail-rec-tags{display:flex;flex-wrap:wrap;gap:6px}
+.nail-rec-tag{padding:4px 12px;background:rgba(232,114,138,.1);border:1px solid var(--border);border-radius:20px;font-size:.72rem;color:var(--text)}
+.score-bars{display:flex;flex-direction:column;gap:9px;justify-content:center}
+.score-row{display:flex;align-items:center;gap:10px}
+.score-lbl{font-size:.7rem;letter-spacing:.5px;text-transform:uppercase;width:84px;color:var(--muted);flex-shrink:0;text-align:right}
+.score-bar-bg{flex:1;height:6px;background:rgba(232,114,138,.1);border-radius:3px;overflow:hidden}
+.score-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--rose),var(--peach));width:0;transition:width 1.1s ease}
+.score-val{font-size:.7rem;color:var(--muted);width:16px;text-align:right;flex-shrink:0}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.gallery-item{height:270px;border-radius:16px;overflow:hidden;border:1.5px solid var(--border);animation:fadeUp .5s ease forwards;opacity:0;box-shadow:0 4px 16px rgba(232,114,138,.1)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:.55s}
+.gallery-item:hover img{transform:scale(1.09)}
+
+/* ══════════════════════════════
+   GALLERY VIEW
+══════════════════════════════ */
+.gallery-masonry{columns:3;column-gap:14px;margin-top:32px}
+.gal-item{break-inside:avoid;margin-bottom:14px;border-radius:var(--radius);overflow:hidden;position:relative}
+.gal-item img{width:100%;display:block;transition:.45s}
+.gal-item:hover img{transform:scale(1.06)}
+.gal-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(61,43,53,.7));padding:24px 14px 12px;color:white;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;opacity:0;transition:.3s;transform:translateY(5px)}
+.gal-item:hover .gal-label{opacity:1;transform:translateY(0)}
+
+/* ══════════════════════════════
+   OCCASIONS VIEW
+══════════════════════════════ */
+.occ-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;margin-bottom:28px}
+.occ-tab{padding:9px 20px;border-radius:50px;border:1.5px solid var(--border);background:var(--surface);font-size:.78rem;letter-spacing:1px;text-transform:uppercase;cursor:none;color:var(--muted);transition:var(--transition);backdrop-filter:blur(8px)}
+.occ-tab.active,.occ-tab:hover{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;border-color:transparent;box-shadow:0 4px 16px rgba(232,114,138,.3)}
+.occ-panel{display:none}
+.occ-panel.active{display:block;animation:fadeUp .35s ease}
+.occ-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.occ-card{border-radius:var(--radius);overflow:hidden;border:1.5px solid var(--border);background:var(--surface);transition:var(--transition);cursor:none;backdrop-filter:blur(8px)}
+.occ-card:hover{transform:translateY(-5px);box-shadow:0 12px 32px rgba(232,114,138,.18)}
+.occ-card img{width:100%;height:200px;object-fit:cover;display:block;transition:.45s}
+.occ-card:hover img{transform:scale(1.07)}
+.occ-card-body{padding:14px 16px}
+.occ-card-body h4{font-family:var(--font-head);font-size:1.1rem;color:var(--text);margin-bottom:4px}
+.occ-card-body p{font-size:.78rem;color:var(--muted);line-height:1.55}
+.occ-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.occ-tag{font-size:.65rem;padding:3px 9px;border-radius:20px;background:rgba(232,114,138,.1);color:var(--acc);border:1px solid var(--border)}
+.occ-book-btn{margin-top:10px;padding:8px 18px;border-radius:50px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;cursor:none;border:none;font-family:var(--font-body);transition:var(--transition);box-shadow:0 3px 12px rgba(232,114,138,.25)}
+.occ-book-btn:hover{transform:translateY(-2px);opacity:.9}
+
+/* ══════════════════════════════
+   SERVICES VIEW
+══════════════════════════════ */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:32px}
+.serv-card{border-radius:var(--radius);overflow:hidden;border:1.5px solid var(--border);background:var(--surface);transition:var(--transition);backdrop-filter:blur(8px)}
+.serv-card:hover{transform:translateY(-5px);box-shadow:0 12px 32px rgba(232,114,138,.2)}
+.serv-card img{width:100%;height:180px;object-fit:cover;display:block}
+.serv-body{padding:20px}
+.serv-body h3{font-family:var(--font-head);font-size:1.3rem;color:var(--text);margin-bottom:6px}
+.serv-body p{font-size:.83rem;color:var(--muted);line-height:1.65;margin-bottom:12px}
+.serv-price{font-size:.72rem;letter-spacing:1px;color:var(--acc2);text-transform:uppercase;font-weight:500}
+
+/* ══════════════════════════════
+   BOOKING VIEW
+══════════════════════════════ */
+.booking-layout{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:32px;align-items:start}
+.book-form{background:var(--surface);border-radius:var(--radius);padding:32px;border:1.5px solid var(--border);backdrop-filter:blur(10px)}
+.book-form .field{margin-bottom:14px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.book-info{background:var(--surface);border-radius:var(--radius);padding:28px;border:1.5px solid var(--border);backdrop-filter:blur(10px)}
+.book-info h3{font-family:var(--font-head);font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:20px}
+.info-item{display:flex;gap:14px;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.info-icon{width:40px;height:40px;border-radius:12px;background:rgba(232,114,138,.12);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.info-text h4{font-size:.84rem;font-weight:500;color:var(--text);margin-bottom:3px}
+.info-text p{font-size:.78rem;color:var(--muted);line-height:1.6}
+.time-slots{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:10px}
+.t-slot{padding:8px 4px;border-radius:10px;border:1.5px solid var(--border);background:rgba(255,255,255,.6);font-size:.72rem;color:var(--muted);text-align:center;cursor:none;transition:var(--transition)}
+.t-slot:hover,.t-slot.chosen{background:rgba(232,114,138,.18);border-color:var(--acc);color:var(--text)}
+
+/* ══════════════════════════════
+   REVIEWS VIEW
+══════════════════════════════ */
+.reviews-layout{display:grid;grid-template-columns:1fr 2fr;gap:28px;margin-top:32px;align-items:start}
+.reviews-stat-box{background:var(--surface);border-radius:var(--radius);padding:28px;border:1.5px solid var(--border);backdrop-filter:blur(10px)}
+.big-rating{font-family:var(--font-head);font-size:5rem;font-weight:900;color:var(--text);line-height:1}
+.stars-row{font-size:1.1rem;margin:8px 0 4px}
+.rating-bars{margin-top:16px}
+.rbar-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.rbar-lbl{font-size:.72rem;color:var(--muted);width:12px}
+.rbar-bg{flex:1;height:5px;background:rgba(232,114,138,.1);border-radius:3px;overflow:hidden}
+.rbar-fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--peach));border-radius:3px}
+.review-form-box{background:var(--surface);border-radius:var(--radius);padding:24px;border:1.5px solid var(--border);backdrop-filter:blur(10px);margin-top:14px}
+.review-form-box h4{font-family:var(--font-head);font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:14px}
+.review-form-box .field{margin-bottom:12px}
+.reviews-right{max-height:700px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;padding-right:4px}
+.review-card{background:var(--surface);border-radius:var(--radius);padding:22px;border:1.5px solid var(--border);margin-bottom:12px;transition:var(--transition);backdrop-filter:blur(8px)}
+.review-card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(232,114,138,.12)}
+.review-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.reviewer h4{font-size:.9rem;font-weight:500;color:var(--text)}
+.reviewer p{font-size:.72rem;color:var(--muted);margin-top:2px}
+.review-text{font-size:.84rem;color:var(--muted);line-height:1.7;margin-bottom:10px}
+.review-service-tag{display:inline-flex;padding:3px 10px;background:rgba(232,114,138,.08);border:1px solid var(--border);border-radius:20px;font-size:.66rem;color:var(--acc);letter-spacing:.5px}
+
+/* ══════════════════════════════
+   MODAL
+══════════════════════════════ */
+.modal-overlay{position:fixed;inset:0;background:rgba(61,43,53,.5);z-index:8000;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px)}
+.modal-overlay.open{display:flex;animation:fadeIn .25s ease}
+.modal{background:rgba(255,252,250,.96);border-radius:24px;padding:36px;max-width:440px;width:100%;position:relative;animation:fadeUp .3s ease;max-height:90vh;overflow-y:auto;border:1.5px solid var(--border);box-shadow:0 20px 60px rgba(232,114,138,.2)}
+.modal h3{font-family:var(--font-head);font-size:1.8rem;font-weight:900;color:var(--text);margin-bottom:5px}
+.modal p{font-size:.84rem;color:var(--muted);margin-bottom:20px}
+.modal .field{margin-bottom:12px}
+.modal-close{position:absolute;top:16px;right:18px;background:none;border:none;font-size:1.2rem;cursor:none;color:var(--muted)}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ── KEYFRAMES ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* ── EMAIL STATUS BADGE ── */
+.email-status{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-size:.74rem;margin-top:10px;font-weight:500}
+.email-status.sending{background:rgba(249,200,160,.2);color:#c2762a;border:1px solid rgba(249,200,160,.5)}
+.email-status.sent{background:rgba(74,222,128,.12);color:#15803d;border:1px solid rgba(74,222,128,.3)}
+.email-status.failed{background:rgba(239,68,68,.1);color:#b91c1c;border:1px solid rgba(239,68,68,.2)}
+
+@media(max-width:860px){
+  #side-nav{display:none}
+  .content{margin-left:0;padding:90px 18px 32px}
+  .booking-layout,.reviews-layout{grid-template-columns:1fr}
+  .result-hero{grid-template-columns:1fr}
+  .auth-split{grid-template-columns:1fr}
+  .auth-art{display:none}
+  .field-row{grid-template-columns:1fr}
+  .gallery-masonry{columns:2}
+  #main-header{padding:13px 18px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEART CURSOR -->
+<svg id="heart-cursor" viewBox="0 0 32 30" xmlns="http://www.w3.org/2000/svg">
+  <path d="M16 27 C16 27 2 17.5 2 9.5 A7 7 0 0 1 16 6.1 A7 7 0 0 1 30 9.5 C30 17.5 16 27 16 27Z" fill="#f472b6" stroke="#fff" stroke-width="1.2"/>
+</svg>
+
+<!-- AMBIENT -->
+<div class="petal-bg" id="petalBg"></div>
+<div class="corner-floral" id="cf1">🌸</div>
+<div class="corner-floral" id="cf2">🌺</div>
+<div class="corner-floral" id="cf3">🌼</div>
+<div class="corner-floral" id="cf4">🌷</div>
+<div class="orb" id="orb1"></div>
+<div class="orb" id="orb2"></div>
+<div class="orb" id="orb3"></div>
+<div id="scroll-indicator"></div>
+<div id="toast-wrap"></div>
+
+<!-- ══════════════════════════════
+     AUTH SCREEN
+══════════════════════════════ -->
+<div id="auth-screen">
+  <!-- Login -->
+  <div id="login-page" class="auth-split">
+    <div class="auth-art">
+      <div class="auth-art-tag">Bloom<br>into your<br>aura. 🌸</div>
+    </div>
+    <div class="auth-box">
+      <h2>Welcome back 🌸</h2>
+      <p class="sub">Log into your Aura.Blush account.</p>
+      <div class="field"><label>Username / Email</label><input type="text" id="login-user" placeholder="enter username or email"></div>
+      <div class="field"><label>Password</label><input type="password" id="login-pass" placeholder="••••••••"></div>
+      <div id="login-err" class="auth-error">Invalid credentials 🌷</div>
+      <button class="btn" onclick="handleLogin()" style="margin-top:8px;width:100%">Login 🌺</button>
+      <p class="switch-text">New here? <span onclick="showSignup()">Create an account ✨</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- Signup (separate overlay) -->
+<div id="signup-page" style="display:none;position:fixed;inset:0;z-index:5001;align-items:center;justify-content:center;padding:20px;background:rgba(255,244,248,.6);backdrop-filter:blur(8px)">
+  <div class="signup-box">
+    <h2>Create account ✨</h2>
+    <p class="sub">Join the Aura.Blush community.</p>
+    <div class="field"><label>Full Name</label><input type="text" id="su-name" placeholder="Your full name"></div>
+    <div class="field"><label>Username</label><input type="text" id="su-user" placeholder="@username"></div>
+    <div class="field"><label>Email</label><input type="email" id="su-email" placeholder="you@email.com"></div>
+    <div class="field"><label>Phone Number</label><input type="text" id="su-phone" placeholder="+91 XXXXX XXXXX"></div>
+    <div class="field"><label>Date of Birth</label><input type="date" id="su-dob"></div>
+    <div class="field"><label>Password</label><input type="password" id="su-pass" placeholder="••••••••"></div>
+    <div class="field"><label>Confirm Password</label><input type="password" id="su-cpass" placeholder="••••••••"></div>
+    <div id="signup-err" class="auth-error"></div>
+    <button class="btn" onclick="handleSignup()" style="margin-top:6px;width:100%">Create Account 💖</button>
+    <p class="switch-text">Already have an account? <span onclick="showLogin()">Sign in</span></p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     HEADER
+══════════════════════════════ -->
+<header id="main-header">
+  <div class="logo">AURA<span>.</span>BLUSH</div>
+  <div style="display:flex;align-items:center;gap:14px">
+    <span id="header-clock"></span>
+    <span id="header-user"></span>
+    <button class="btn btn-ghost" onclick="handleLogout()" style="padding:8px 16px;font-size:.74rem">Logout</button>
+  </div>
+</header>
+
+<!-- ══════════════════════════════
+     HERO
+══════════════════════════════ -->
+<section id="hero-screen">
+  <div class="hero-label">✿ Aesthetic Identity + Nail Studio ✿</div>
+  <h1>Your<br><em>Aura</em><br>Awaits.</h1>
+  <p class="hero-sub">Discover your aesthetic identity — and treat yourself at Blush Nail Studio, Banūr. 🌸</p>
+  <div class="hero-cta">
+    <button class="btn" onclick="enterApp('quiz')">Find My Aesthetic 🌺</button>
+    <button class="btn btn-ghost" onclick="enterApp('gallery')">View Our Work 💅</button>
+    <button class="btn btn-ghost" onclick="enterApp('booking')">Book Now 📅</button>
+  </div>
+  <div class="hero-stats">
+    <div><div class="hero-stat-num">1,200+</div><div class="hero-stat-lbl">Happy Clients</div></div>
+    <div><div class="hero-stat-num">4.9 ★</div><div class="hero-stat-lbl">Average Rating</div></div>
+    <div><div class="hero-stat-num">5 yrs</div><div class="hero-stat-lbl">Experience</div></div>
+  </div>
+  <div id="scroll-hint">↓ explore your world</div>
+</section>
+
+<!-- ══════════════════════════════
+     APP
+══════════════════════════════ -->
+<div id="app">
+  <nav id="side-nav">
+    <div class="nav-item active" onclick="switchView('quiz',this)">✨<span class="tip">Aesthetic Quiz</span></div>
+    <div class="nav-item" onclick="switchView('gallery',this)">🖼<span class="tip">Gallery</span></div>
+    <div class="nav-item" onclick="switchView('occasions',this)">🎀<span class="tip">Occasions</span></div>
+    <div class="nav-item" onclick="switchView('services',this)">💅<span class="tip">Services</span></div>
+    <div class="nav-item" onclick="switchView('booking',this)">📅<span class="tip">Book</span></div>
+    <div class="nav-item" onclick="switchView('reviews',this)">🌟<span class="tip">Reviews</span></div>
+  </nav>
+
+  <div class="content">
+
+    <!-- ── QUIZ ── -->
+    <div id="quiz" class="view active">
+      <div class="sec-head">
+        <div class="sec-label">Aesthetic Quiz</div>
+        <h2 class="sec-title">Find your <em>nail personality</em></h2>
+        <p class="sec-sub">8 questions. We'll reveal your aesthetic identity and suggest the perfect nail looks — ready to book straight after 🌷</p>
+      </div>
+      <div id="quizUI">
+        <div id="quiz-counter"></div>
+        <div id="quiz-prog-bar"><div id="quiz-prog-fill"></div></div>
+        <div style="font-family:var(--font-head);font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text);margin-bottom:24px;line-height:1.2" id="quiz-question"></div>
+        <div class="opts-grid" id="quiz-opts"></div>
+      </div>
+      <div id="resultUI" style="display:none"></div>
+    </div>
+
+    <!-- ── GALLERY ── -->
+    <div id="gallery" class="view">
+      <div class="sec-head">
+        <div class="sec-label">Our Work</div>
+        <h2 class="sec-title">Crafted with <em>intention</em></h2>
+        <p class="sec-sub">Every nail tells a story. Browse our latest creations — from minimalist nudes to maximalist art 🌺</p>
+      </div>
+      <div class="gallery-masonry">
+        <div class="gal-item"><img src="https://img.freepik.com/free-photo/woman-showing-her-nail-art-fingernails_23-2149820439.jpg?w=500&q=80" alt loading="lazy"><div class="gal-label">Floral Fantasy</div></div>
+        <div class="gal-item"><img src="https://png.pngtree.com/background/20250124/original/pngtree-gel-acrylic-nail-extension-with-reflective-design-template-beauty-long-photo-picture-image_14553132.jpg" alt loading="lazy"><div class="gal-label">Chrome Mirror</div></div>
+        <div class="gal-item"><img src="https://st.depositphotos.com/6695018/58779/i/450/depositphotos_587797714-stock-photo-acrylic-nail-extension-manicure-nail.jpg" alt loading="lazy"><div class="gal-label">Acrylic Extensions</div></div>
+        <div class="gal-item"><img src="https://i.pinimg.com/736x/31/71/4b/31714b87e8af6438b4acffacfc098ed4.jpg" alt loading="lazy"><div class="gal-label">Glam Ombre</div></div>
+        <div class="gal-item"><img src="https://naildesignssavvy.com/wp-content/uploads/2024/11/Burgundy-candy-cane-683x1024.jpg" alt loading="lazy"><div class="gal-label">Holiday Candy Cane</div></div>
+        <div class="gal-item"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=500&q=80" alt loading="lazy"><div class="gal-label">Classic French</div></div>
+        <div class="gal-item"><img src="https://i.pinimg.com/736x/78/12/37/781237b61a72ef179321faf7eed8b97f.jpg" alt loading="lazy"><div class="gal-label">Pastel Dream</div></div>
+        <div class="gal-item"><img src="https://media.istockphoto.com/id/1308841863/photo/beautician-washing-woman-feet-for-pedicure-treatment.jpg?w=500&q=80" alt loading="lazy"><div class="gal-label">Luxury Pedicure</div></div>
+        <div class="gal-item"><img src="https://i.pinimg.com/736x/9f/bf/55/9fbf555924dcfc64c6ca6b9499155edf.jpg" alt loading="lazy"><div class="gal-label">Blush Coquette</div></div>
+      </div>
+    </div>
+
+    <!-- ── OCCASIONS ── -->
+    <div id="occasions" class="view">
+      <div class="sec-head">
+        <div class="sec-label">By Occasion</div>
+        <h2 class="sec-title">Designs for every <em>moment</em></h2>
+        <p class="sec-sub">Whether it's a wedding, festival, date night, or casual brunch — find the perfect nail style 🎀</p>
+      </div>
+      <div class="occ-tabs" id="occTabs">
+        <div class="occ-tab active" onclick="switchOcc('wedding',this)">💍 Wedding</div>
+        <div class="occ-tab" onclick="switchOcc('party',this)">🎉 Party</div>
+        <div class="occ-tab" onclick="switchOcc('festival',this)">✨ Festival</div>
+        <div class="occ-tab" onclick="switchOcc('office',this)">💼 Office</div>
+        <div class="occ-tab" onclick="switchOcc('date',this)">🌹 Date Night</div>
+        <div class="occ-tab" onclick="switchOcc('casual',this)">☕ Everyday</div>
+      </div>
+      <div id="occ-wedding" class="occ-panel active"><div class="occ-grid">
+        <div class="occ-card"><img src="https://i1-e.pinimg.com/1200x/d7/d3/8b/d7d38bf7f3f72f053a788e7a4a8c743b.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Bridal Blush</h4><p>Soft pinks & pearls with intricate lace detailing for your big day.</p><div class="occ-tags"><span class="occ-tag">French tip</span><span class="occ-tag">Pearl accents</span></div><button class="occ-book-btn" onclick="openModal('Bridal Package')">Book This ✦</button></div></div>
+        <div class="occ-card"><img src="https://i.pinimg.com/736x/ab/57/27/ab57273e867ce6164877e9b6fb5b16ff.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Ivory Romance</h4><p>Classic white ombre with gold foil leaf accents — timeless elegance.</p><div class="occ-tags"><span class="occ-tag">Ombre</span><span class="occ-tag">Gold foil</span></div><button class="occ-book-btn" onclick="openModal('Bridal Package')">Book This ✦</button></div></div>
+        <div class="occ-card"><img src="https://i.pinimg.com/736x/5d/13/ec/5d13ec4b75a8aba739ba6e4af2e736a4.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Garden Ceremony</h4><p>Hand-painted florals on a sheer nude base for a garden wedding.</p><div class="occ-tags"><span class="occ-tag">3D art</span><span class="occ-tag">Florals</span></div><button class="occ-book-btn" onclick="openModal('Nail Art Session')">Book This ✦</button></div></div>
+        <div class="occ-card"><img src="https://i.pinimg.com/736x/81/ed/d2/81edd234e5593b6eeb1b76855c373bf2.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Minimal Bride</h4><p>Clean lines, sheer pink, and a single crystal accent per nail.</p><div class="occ-tags"><span class="occ-tag">Minimalist</span><span class="occ-tag">Crystal</span></div><button class="occ-book-btn" onclick="openModal('Bridal Package')">Book This ✦</button></div></div>
+      </div></div>
+      <div id="occ-party" class="occ-panel"><div class="occ-grid">
+        <div class="occ-card"><img src="https://i1-e.pinimg.com/1200x/1d/86/16/1d8616d7bc063ce08a0a7f1af138dbd6.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Holo Glam</h4><p>Holographic chrome powder over deep plum — maximum disco energy.</p><div class="occ-tags"><span class="occ-tag">Chrome</span><span class="occ-tag">Glitter</span></div><button class="occ-book-btn" onclick="openModal('Nail Art Session')">Book This ✦</button></div></div>
+        <div class="occ-card"><img src="https://i.pinimg.com/736x/e0/0a/5a/e00a5a4ac4d0f2f8fab758f7d9b666e8.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Party Butterfly</h4><p>Rhinestone-encrusted tips with Y2K butterfly stickers. Show-stopping.</p><div class="occ-tags"><span class="occ-tag">Rhinestones</span><span class="occ-tag">Y2K</span></div><button class="occ-book-btn" onclick="openModal('Nail Art Session')">Book This ✦</button></div></div>
+        <div class="occ-card"><img src="https://i.pinimg.com/736x/56/f6/b7/56f6b7227221c443030fdee195b75a49.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Neon Dreams</h4><p>UV-reactive neon tips that glow under blacklight.</p><div class="occ-tags"><span class="occ-tag">Neon</span><span class="occ-tag">UV glow</span></div><button class="occ-book-btn" onclick="openModal('Nail Art Session')">Book This ✦</button></div></div>
+        <div class="occ-card"><img src="https://i.pinimg.com/736x/b1/25/fa/b125fa4235b48cd27b0f98ea11db480f.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Champagne Toast</h4><p>Gold chunky glitter with champagne base for NYE celebrations.</p><div class="occ-tags"><span class="occ-tag">Gold</span><span class="occ-tag">Glitter</span></div><button class="occ-book-btn" onclick="openModal('Nail Art Session')">Book This ✦</button></div></div>
+      </div></div>
+      <div id="occ-festival" class="occ-panel"><div class="occ-grid">
+        <div class="occ-card"><img src="https://i1-e.pinimg.com/1200x/0c/98/1d/0c981df49a80390f3b870a98c3c9a64a.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Haldi Glow</h4><p>Mustard yellows and marigold oranges with mirror powder for Haldi.</p><div class="occ-tags"><span class="occ-tag">Mustard</span><span class="occ-tag">Marigold</span></div><button class="occ-book-btn" onclick="openModal('Nail Art Session')">Book This ✦</button></div></div>
+        <div class="occ-card"><img src="https://i1-e.pinimg.com/1200x/61/93/c4/6193c44fa2fbcb39a218daeb06d3fbb2.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Diwali Dazzle</h4><p>Deep jewel tones with gold mandala art and gemstone accents.</p><div class="occ-tags"><span class="occ-tag">Mandala</span><span class="occ-tag">Jewel tones</span></div><button class="occ-book-btn" onclick="openModal('Nail Art Session')">Book This ✦</button></div></div>
+        <div class="occ-card"><img src="https://i1-e.pinimg.com/1200x/c6/f1/71/c6f17177cc93b6e38844c29afdb64b48.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Mehendi Fairy</h4><p>Earthy terracotta and emerald, mehndi-inspired nail stamping.</p><div class="occ-tags"><span class="occ-tag">Stamping</span><span class="occ-tag">Earthy</span></div><button class="occ-book-btn" onclick="openModal('Nail Art Session')">Book This ✦</button></div></div>
+        <div class="occ-card"><img src="https://i1-e.pinimg.com/1200x/53/ae/58/53ae588d99fcf72718da883c787cb19f.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Spring Festival</h4><p>Pastel florals with iridescent jelly finish — light and fresh.</p><div class="occ-tags"><span class="occ-tag">Pastels</span><span class="occ-tag">Jelly</span></div><button class="occ-book-btn" onclick="openModal('Nail Art Session')">Book This ✦</button></div></div>
+      </div></div>
+      <div id="occ-office" class="occ-panel"><div class="occ-grid">
+        <div class="occ-card"><img src="https://i1-e.pinimg.com/1200x/84/17/3c/84173c3a35434b2459cdb73a77349025.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Quiet Luxury</h4><p>Ballet pink or beige gel, immaculate finish, barely-there sheen.</p><div class="occ-tags"><span class="occ-tag">Nude</span><span class="occ-tag">Gel</span></div><button class="occ-book-btn" onclick="openModal('Gel Manicure')">Book This ✦</button></div></div>
+        <div class="occ-card"><img src="https://i.pinimg.com/736x/d3/e9/e1/d3e9e1d20751977b21d1a6586b87e802.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Modern French</h4><p>Twisted French tip with subtle coloured tips — polished & corporate-safe.</p><div class="occ-tags"><span class="occ-tag">French</span><span class="occ-tag">Minimal</span></div><button class="occ-book-btn" onclick="openModal('Classic Manicure')">Book This ✦</button></div></div>
+        <div class="occ-card"><img src="https://i1-e.pinimg.com/736x/aa/30/67/aa30670e870e5fa82b41ccc41419330f.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Earth Hour</h4><p>Warm terracotta and muted mocha tones — sophisticated and grounded.</p><div class="occ-tags"><span class="occ-tag">Terracotta</span><span class="occ-tag">Matte</span></div><button class="occ-book-btn" onclick="openModal('Gel Manicure')">Book This ✦</button></div></div>
+        <div class="occ-card"><img src="https://i1-e.pinimg.com/1200x/fd/4a/a1/fd4aa19425164f4b751f9bb922a8028f.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Navy Power</h4><p>Deep navy with a subtle silver micro-shimmer — confidence in a coat.</p><div class="occ-tags"><span class="occ-tag">Navy</span><span class="occ-tag">Shimmer</span></div><button class="occ-book-btn" onclick="openModal('Gel Manicure')">Book This ✦</button></div></div>
+      </div></div>
+      <div id="occ-date" class="occ-panel"><div class="occ-grid">
+        <div class="occ-card"><img src="https://i.pinimg.com/736x/f6/d7/13/f6d713cfc18f26bb2298d036ff9a7fbc.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Dark Romance</h4><p>Deep burgundy with dried rose petal art — mysterious and magnetic.</p><div class="occ-tags"><span class="occ-tag">Burgundy</span><span class="occ-tag">Floral</span></div><button class="occ-book-btn" onclick="openModal('Nail Art Session')">Book This ✦</button></div></div>
+        <div class="occ-card"><img src="https://i.pinimg.com/736x/d4/1b/1a/d41b1a60c50c2fb0a96a4b65a7394204.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Rosy Affair</h4><p>Blush pink with glossy red heart accents. Soft and flirtatious.</p><div class="occ-tags"><span class="occ-tag">Hearts</span><span class="occ-tag">Glossy</span></div><button class="occ-book-btn" onclick="openModal('Nail Art Session')">Book This ✦</button></div></div>
+        <div class="occ-card"><img src="https://i.pinimg.com/736x/f8/80/96/f88096217ce1c03f92fd6fbef7dce260.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Rosé & Silk</h4><p>Dusty rose with satin finish — understated and utterly romantic.</p><div class="occ-tags"><span class="occ-tag">Satin</span><span class="occ-tag">Dusty rose</span></div><button class="occ-book-btn" onclick="openModal('Gel Manicure')">Book This ✦</button></div></div>
+        <div class="occ-card"><img src="https://i.pinimg.com/736x/55/80/56/55805672f03acb83a4a7a37619a4537c.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Cherry Kiss</h4><p>Cherry red lacquer with tiny gold studs — classic, bold, unforgettable.</p><div class="occ-tags"><span class="occ-tag">Cherry red</span><span class="occ-tag">Studs</span></div><button class="occ-book-btn" onclick="openModal('Nail Art Session')">Book This ✦</button></div></div>
+      </div></div>
+      <div id="occ-casual" class="occ-panel"><div class="occ-grid">
+        <div class="occ-card"><img src="https://i.pinimg.com/736x/aa/0f/4e/aa0f4ee4a09e5179841b041dddae9ac4.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Café Aesthetic</h4><p>Warm caramel, coffee brown, abstract brush strokes — effortlessly cool.</p><div class="occ-tags"><span class="occ-tag">Abstract</span><span class="occ-tag">Earthy</span></div><button class="occ-book-btn" onclick="openModal('Nail Art Session')">Book This ✦</button></div></div>
+        <div class="occ-card"><img src="https://i.pinimg.com/736x/16/71/44/167144745727bec9cb0f22bd5f42998c.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Sunrise Ombre</h4><p>Peach-to-coral gradient for a fresh and cheerful everyday look.</p><div class="occ-tags"><span class="occ-tag">Ombre</span><span class="occ-tag">Peach</span></div><button class="occ-book-btn" onclick="openModal('Gel Manicure')">Book This ✦</button></div></div>
+        <div class="occ-card"><img src="https://i1-e.pinimg.com/1200x/85/9e/c2/859ec2399624092bfd1f7251775f0578.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Colour Pop</h4><p>Each nail a different pastel — playful mix-and-match for every OOTD.</p><div class="occ-tags"><span class="occ-tag">Multicolour</span><span class="occ-tag">Fun</span></div><button class="occ-book-btn" onclick="openModal('Classic Manicure')">Book This ✦</button></div></div>
+        <div class="occ-card"><img src="https://i1-e.pinimg.com/1200x/75/f5/71/75f571291e7b991958c276f4e1f8563f.jpg" alt loading="lazy"><div class="occ-card-body"><h4>Glass Nails</h4><p>Sheer jelly finish with barely-there tint — the "your nails but better" look.</p><div class="occ-tags"><span class="occ-tag">Jelly</span><span class="occ-tag">Sheer</span></div><button class="occ-book-btn" onclick="openModal('Classic Manicure')">Book This ✦</button></div></div>
+      </div></div>
+    </div>
+
+    <!-- ── SERVICES ── -->
+    <div id="services" class="view">
+      <div class="sec-head">
+        <div class="sec-label">What We Offer</div>
+        <h2 class="sec-title">Our <em>services</em></h2>
+        <p class="sec-sub">Premium nail care crafted with love, using only the finest products 💖</p>
+      </div>
+      <div class="services-grid">
+        <div class="serv-card"><img src="http://i.pinimg.com/736x/0c/14/a4/0c14a41e97ae9370624fea083491f5c0.jpg" alt><div class="serv-body"><h3>Classic Manicure 💖</h3><p>Shaping, cuticle care, hand massage and polish of your choice. Gel & regular available.</p><div class="serv-price">From ₹350 · 45 min</div><button class="btn" style="margin-top:12px;padding:10px 20px;font-size:.74rem" onclick="openModal('Classic Manicure')">Book Now</button></div></div>
+        <div class="serv-card"><img src="https://i.pinimg.com/736x/3e/28/56/3e28563f83e96f9127342367f5479b29.jpg" alt><div class="serv-body"><h3>Pedicure 👣</h3><p>Foot soak, scrub, callus removal, massage, and long-lasting polish. Pure relaxation.</p><div class="serv-price">From ₹450 · 60 min</div><button class="btn" style="margin-top:12px;padding:10px 20px;font-size:.74rem" onclick="openModal('Pedicure')">Book Now</button></div></div>
+        <div class="serv-card"><img src="https://i1-e.pinimg.com/1200x/ad/3e/5c/ad3e5c099ff4dfdff41257905481a2bb.jpg" alt><div class="serv-body"><h3>Custom Nail Art 🎨</h3><p>Florals, abstracts, 3D elements, chrome, stamping & more. Bring your inspo!</p><div class="serv-price">From ₹600 · 75 min</div><button class="btn" style="margin-top:12px;padding:10px 20px;font-size:.74rem" onclick="openModal('Nail Art Session')">Book Now</button></div></div>
+        <div class="serv-card"><img src="https://i.pinimg.com/736x/c6/58/43/c658434985495a365ebcc876c5f15eb8.jpg" alt><div class="serv-body"><h3>Acrylic Extensions 💅</h3><p>Full set of acrylic or gel extensions — almond, coffin, stiletto, or square.</p><div class="serv-price">From ₹1,200 · 90 min</div><button class="btn" style="margin-top:12px;padding:10px 20px;font-size:.74rem" onclick="openModal('Full Set Acrylics')">Book Now</button></div></div>
+        <div class="serv-card"><img src="https://i1-c.pinimg.com/1200x/02/61/2d/02612d29bff70228a575e396f9ebf90f.jpg" alt><div class="serv-body"><h3>Bridal Package 👰</h3><p>Full hands & feet prep, extensions, intricate art, long-wear gel. The complete experience.</p><div class="serv-price">From ₹3,500 · 3 hrs</div><button class="btn" style="margin-top:12px;padding:10px 20px;font-size:.74rem" onclick="openModal('Bridal Package')">Book Now</button></div></div>
+        <div class="serv-card"><img src="https://i1-e.pinimg.com/1200x/67/f4/3f/67f43f5d1c2f05db8bc16961e42c6ac4.jpg" alt><div class="serv-body"><h3>Gel Manicure ✨</h3><p>Long-lasting gel in hundreds of shades. No chips, mirror shine for up to 3 weeks.</p><div class="serv-price">From ₹500 · 55 min</div><button class="btn" style="margin-top:12px;padding:10px 20px;font-size:.74rem" onclick="openModal('Gel Manicure')">Book Now</button></div></div>
+      </div>
+    </div>
+
+    <!-- ── BOOKING ── -->
+    <div id="booking" class="view">
+      <div class="sec-head">
+        <div class="sec-label">Reserve Your Spot</div>
+        <h2 class="sec-title">Book an <em>appointment</em></h2>
+        <p class="sec-sub">A confirmation email will be sent to your registered email address automatically 💌</p>
+      </div>
+      <div class="booking-layout">
+        <div class="book-form">
+          <div class="field-row">
+            <div class="field"><label>First Name</label><input type="text" id="b-fname" placeholder="Your Name"></div>
+            <div class="field"><label>Last Name</label><input type="text" id="b-lname" placeholder="Full Name"></div>
+          </div>
+          <div class="field-row" style="margin-top:14px">
+            <div class="field"><label>Phone / WhatsApp</label><input type="tel" id="b-phone" placeholder="+91 XXXXX-XXXXX"></div>
+            <div class="field"><label>Email (optional)</label><input type="email" id="b-email" placeholder="you@email.com"></div>
+          </div>
+          <div class="field" style="margin-top:14px"><label>Service</label>
+            <select id="b-service">
+              <option value="">Select a service…</option>
+              <option>Classic Manicure</option><option>Gel Manicure</option>
+              <option>Pedicure</option><option>Nail Art Session</option>
+              <option>Full Set Acrylics</option><option>Bridal Package</option>
+            </select>
+          </div>
+          <div class="field-row" style="margin-top:14px">
+            <div class="field"><label>Preferred Date</label><input type="date" id="b-date"></div>
+            <div class="field"><label>Preferred Time</label>
+              <select id="b-time">
+                <option value="">Choose slot…</option>
+                <option>10:00 AM</option><option>10:30 AM</option><option>11:00 AM</option>
+                <option>12:00 PM</option><option>1:00 PM</option><option>2:00 PM</option>
+                <option>3:00 PM</option><option>4:00 PM</option><option>5:00 PM</option>
+                <option>6:00 PM</option><option>7:00 PM</option>
+              </select>
+            </div>
+          </div>
+          <div class="field" style="margin-top:14px"><label>Design Inspiration / Notes</label><textarea id="b-note" placeholder="Share any inspo, references, or special requests…"></textarea></div>
+          <button class="btn" id="book-submit-btn" onclick="submitBooking()" style="margin-top:8px;width:100%;padding:15px">Confirm Appointment 💅</button>
+          <div id="book-email-status"></div>
+        </div>
+        <div class="book-info">
+          <h3>What to expect 🌸</h3>
+          <div class="info-item"><div class="info-icon">📍</div><div class="info-text"><h4>Location</h4><p>Main Market Road, Banūr<br>Punjab 140601 · Parking available</p></div></div>
+          <div class="info-item"><div class="info-icon">🕐</div><div class="info-text"><h4>Hours</h4><p>Mon–Sat: 10 AM – 8 PM<br>Sunday: 11 AM – 6 PM</p></div></div>
+          <div class="info-item"><div class="info-icon">📞</div><div class="info-text"><h4>Contact</h4><p>+91 XXXXX-XXXXX<br>hello@aurablush.in</p></div></div>
+          <div class="info-item" style="border:none;padding-bottom:0"><div class="info-icon">💌</div><div class="info-text"><h4>Confirmation</h4><p>A booking confirmation email is sent instantly to your registered email. Please arrive 5 mins early.</p></div></div>
+          <div style="margin-top:20px">
+            <div style="font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px">Quick Slots Today</div>
+            <div class="time-slots" id="timeSlots">
+              <div class="t-slot chosen">11 AM</div><div class="t-slot">12 PM</div><div class="t-slot">2 PM</div><div class="t-slot">3 PM</div>
+              <div class="t-slot">4 PM</div><div class="t-slot">5 PM</div><div class="t-slot">6 PM</div><div class="t-slot">7 PM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── REVIEWS ── -->
+    <div id="reviews" class="view">
+      <div class="sec-head">
+        <div class="sec-label">Client Love</div>
+        <h2 class="sec-title">What our clients <em>say</em></h2>
+        <p class="sec-sub">340+ reviews and counting. Every visit, every nail, every smile matters 💕</p>
+      </div>
+      <div class="reviews-layout">
+        <div>
+          <div class="reviews-stat-box">
+            <div class="big-rating">4.9</div>
+            <div class="stars-row">⭐⭐⭐⭐⭐</div>
+            <div style="font-size:.78rem;color:var(--muted)">Based on 340+ reviews</div>
+            <div class="rating-bars" style="margin-top:16px">
+              <div class="rbar-row"><div class="rbar-lbl">5</div><div class="rbar-bg"><div class="rbar-fill" style="width:88%"></div></div><span style="font-size:.7rem;color:var(--muted);margin-left:8px">88%</span></div>
+              <div class="rbar-row"><div class="rbar-lbl">4</div><div class="rbar-bg"><div class="rbar-fill" style="width:9%"></div></div><span style="font-size:.7rem;color:var(--muted);margin-left:8px">9%</span></div>
+              <div class="rbar-row"><div class="rbar-lbl">3</div><div class="rbar-bg"><div class="rbar-fill" style="width:2%"></div></div><span style="font-size:.7rem;color:var(--muted);margin-left:8px">2%</span></div>
+              <div class="rbar-row"><div class="rbar-lbl">2</div><div class="rbar-bg"><div class="rbar-fill" style="width:1%"></div></div><span style="font-size:.7rem;color:var(--muted);margin-left:8px">1%</span></div>
+              <div class="rbar-row"><div class="rbar-lbl">1</div><div class="rbar-bg"><div class="rbar-fill" style="width:0%"></div></div><span style="font-size:.7rem;color:var(--muted);margin-left:8px">0%</span></div>
+            </div>
+          </div>
+          <div class="review-form-box">
+            <h4>Leave a Review 🌟</h4>
+            <div class="field"><label>Your Name</label><input type="text" id="rv-name" placeholder="Your name"></div>
+            <div class="field"><label>Service</label>
+              <select id="rv-service"><option>Classic Manicure</option><option>Nail Art Session</option><option>Pedicure</option><option>Full Set Acrylics</option><option>Bridal Package</option></select>
+            </div>
+            <div class="field"><label>Rating</label>
+              <select id="rv-rating"><option value="5">⭐⭐⭐⭐⭐ Excellent!</option><option value="4">⭐⭐⭐⭐ Very Good</option><option value="3">⭐⭐⭐ Good</option><option value="2">⭐⭐ Fair</option></select>
+            </div>
+            <div class="field"><label>Your Review</label><textarea id="rv-text" placeholder="Tell others about your experience 💖"></textarea></div>
+            <button class="btn" onclick="submitReview()" style="margin-top:6px;width:100%;padding:12px">Submit Review ✨</button>
+          </div>
+        </div>
+        <div class="reviews-right" id="reviewsList">
+          <div class="review-card"><div class="review-card-top"><div class="reviewer"><h4>Ananya K.</h4><p>April 2025</p></div><div>⭐⭐⭐⭐⭐</div></div><p class="review-text">Absolutely obsessed with my nails! I brought a reference photo and they replicated it perfectly — even better actually. The attention to detail is unreal. Will not go anywhere else!</p><span class="review-service-tag">Nail Art Session</span></div>
+          <div class="review-card"><div class="review-card-top"><div class="reviewer"><h4>Simran P.</h4><p>March 2025</p></div><div>⭐⭐⭐⭐⭐</div></div><p class="review-text">Got my bridal package done here and WOW. The whole team was so patient, offered so many design options, and the final result made me cry happy tears. Highly recommend for brides!</p><span class="review-service-tag">Bridal Package</span></div>
+          <div class="review-card"><div class="review-card-top"><div class="reviewer"><h4>Rhea M.</h4><p>March 2025</p></div><div>⭐⭐⭐⭐⭐</div></div><p class="review-text">Super clean, professional studio and the designs are SO beautiful. My gel mani lasted 3 full weeks without chipping. 10/10</p><span class="review-service-tag">Gel Manicure</span></div>
+          <div class="review-card"><div class="review-card-top"><div class="reviewer"><h4>Kavya S.</h4><p>February 2025</p></div><div>⭐⭐⭐⭐⭐</div></div><p class="review-text">Came in for a pedicure before my cousin's wedding and left feeling like royalty. The foot massage alone was worth it. Also got nail art on my toes which everyone kept complimenting!</p><span class="review-service-tag">Pedicure</span></div>
+          <div class="review-card"><div class="review-card-top"><div class="reviewer"><h4>Diya R.</h4><p>January 2025</p></div><div>⭐⭐⭐⭐</div></div><p class="review-text">Really lovely experience overall. The acrylic set is stunning. The quality more than made up for the short wait. Definitely coming back!</p><span class="review-service-tag">Full Set Acrylics</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /app -->
+
+<!-- QUICK BOOK MODAL -->
+<div class="modal-overlay" id="bookModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3>Quick Book 💅</h3>
+    <p>Fill in your details and we'll confirm via email 💌</p>
+    <div class="field"><label>Your Name</label><input type="text" id="qb-name" placeholder="Your name"></div>
+    <div class="field"><label>Phone / WhatsApp</label><input type="tel" id="qb-phone" placeholder="+91 XXXXX XXXXX"></div>
+    <div class="field"><label>Service</label>
+      <select id="qb-service">
+        <option>Classic Manicure</option><option>Gel Manicure</option><option>Pedicure</option>
+        <option>Nail Art Session</option><option>Full Set Acrylics</option><option>Bridal Package</option>
+      </select>
+    </div>
+    <div class="field"><label>Date</label><input type="date" id="qb-date"></div>
+    <div class="field"><label>Notes (optional)</label><textarea id="qb-note" placeholder="Design refs, occasion, anything special…" style="min-height:70px"></textarea></div>
+    <button class="btn" id="qb-submit-btn" onclick="submitQuickBook()" style="margin-top:6px;width:100%;padding:14px">Confirm Appointment 💖</button>
+    <div id="qb-email-status"></div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════
+   EMAILJS CONFIG
+══════════════════════════════ */
+const EMAILJS_SERVICE_ID  = 'service_3e6bwln';
+const EMAILJS_TEMPLATE_ID = 'template_s3vyb6f';
+
+/* ── Get logged-in user email ── */
+function getLoggedInEmail() {
+  const saved = JSON.parse(localStorage.getItem('aurablushUser') || '{}');
+  return saved.email || '';
+}
+function getLoggedInName() {
+  const saved = JSON.parse(localStorage.getItem('aurablushUser') || '{}');
+  return saved.name || '';
+}
+
+/*
+  sendBookingEmail(params)
+  Sends a booking confirmation to the user's registered email via EmailJS.
+  params: { to_name, to_email, service, date, time, phone, notes }
+*/
+async function sendBookingEmail(params) {
+  const templateParams = {
+    to_name:    params.to_name    || 'Valued Client',
+    to_email:   params.to_email,
+    from_name:  'Aura.Blush Studio',
+    service:    params.service    || 'Appointment',
+    date:       params.date       || 'To be confirmed',
+    time:       params.time       || 'To be confirmed',
+    phone:      params.phone      || '—',
+    notes:      params.notes      || 'None',
+    studio_email: 'hello@aurablush.in',
+    studio_phone: '+91 XXXXX-XXXXX',
+    studio_address: 'Main Market Road, Banūr, Punjab 140601'
+  };
+
+  return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+}
+
+/* ── Show email status badge ── */
+function setEmailStatus(containerId, state, msg) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = `<span class="email-status ${state}">${msg}</span>`;
+}
+
+/* ── HEART CURSOR ── */
+const hc=document.getElementById('heart-cursor');
+document.addEventListener('mousemove',e=>{hc.style.left=e.clientX+'px';hc.style.top=e.clientY+'px'});
+document.addEventListener('mousedown',()=>hc.classList.add('clicked'));
+document.addEventListener('mouseup',()=>hc.classList.remove('clicked'));
+
+/* ── PETALS ── */
+const petalEmojis=['🌸','🌺','🌼','🌷','🪷','✿','🌻'];
+(function(){
+  const bg=document.getElementById('petalBg');
+  for(let i=0;i<22;i++){
+    const p=document.createElement('div');p.className='petal';
+    p.textContent=petalEmojis[Math.floor(Math.random()*petalEmojis.length)];
+    p.style.cssText=`left:${Math.random()*100}vw;font-size:${1.1+Math.random()*1.5}rem;animation-duration:${13+Math.random()*16}s;animation-delay:${Math.random()*22}s`;
+    bg.appendChild(p);
+  }
+})();
+
+/* ── CLOCK ── */
+function updateClock(){
+  const el=document.getElementById('header-clock');
+  if(el)el.textContent=new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+}
+setInterval(updateClock,1000);updateClock();
+
+/* ── SCROLL INDICATOR ── */
+window.addEventListener('scroll',()=>{
+  const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  document.getElementById('scroll-indicator').style.width=Math.min(pct,100)+'%';
+});
+
+/* ── TOAST ── */
+function showToast(icon,msg,type='info'){
+  const wrap=document.getElementById('toast-wrap'),t=document.createElement('div');
+  t.className='toast';t.innerHTML=`<span>${icon}</span><span>${msg}</span>`;
+  if(type==='success')t.style.borderColor='rgba(74,222,128,.35)';
+  if(type==='warn')t.style.borderColor='rgba(251,191,36,.35)';
+  wrap.appendChild(t);
+  setTimeout(()=>{t.classList.add('out');setTimeout(()=>t.remove(),400)},3400);
+}
+
+/* ══ AUTH ══ */
+function showSignup(){
+  document.getElementById('auth-screen').style.display='none';
+  const sp=document.getElementById('signup-page');
+  sp.style.display='flex';
+}
+function showLogin(){
+  document.getElementById('signup-page').style.display='none';
+  document.getElementById('auth-screen').style.display='flex';
+}
+
+function handleSignup(){
+  const n=document.getElementById('su-name').value.trim(),
+        u=document.getElementById('su-user').value.trim(),
+        e=document.getElementById('su-email').value.trim(),
+        ph=document.getElementById('su-phone').value.trim(),
+        d=document.getElementById('su-dob').value,
+        p=document.getElementById('su-pass').value.trim(),
+        cp=document.getElementById('su-cpass').value.trim(),
+        err=document.getElementById('signup-err');
+  err.classList.remove('show');
+  if(!n||!u||!e||!ph||!d||!p||!cp){err.textContent='Please fill all fields 🌷';err.classList.add('show');return}
+  if(p!==cp){err.textContent='Passwords do not match 💔';err.classList.add('show');return}
+  localStorage.setItem('aurablushUser',JSON.stringify({name:n,user:u,email:e,phone:ph,dob:d,pass:p}));
+  showToast('💖','Account created! Please log in 🌸','success');
+  showLogin();
+}
+
+function handleLogin(){
+  const lu=document.getElementById('login-user').value.trim(),
+        lp=document.getElementById('login-pass').value.trim(),
+        err=document.getElementById('login-err'),
+        saved=JSON.parse(localStorage.getItem('aurablushUser'));
+  err.classList.remove('show');
+  if(!saved){err.textContent='No account found. Create one first 🌷';err.classList.add('show');return}
+  if((lu===saved.user||lu===saved.email)&&lp===saved.pass){
+    document.getElementById('auth-screen').style.display='none';
+    document.getElementById('signup-page').style.display='none';
+    document.getElementById('main-header').style.display='flex';
+    document.getElementById('hero-screen').style.display='flex';
+    document.getElementById('header-user').textContent='@'+saved.user;
+    showToast('🌸','Welcome back, '+saved.name+'!','success');
+    document.title='Aura.Blush | Welcome, '+saved.name;
+  } else {
+    err.textContent='Invalid credentials 🌷';err.classList.add('show');
+  }
+}
+
+function handleLogout(){
+  if(!confirm('Log out of Aura.Blush? 🌷'))return;
+  location.reload();
+}
+
+/* ══ ENTER APP ══ */
+function enterApp(tab){
+  document.getElementById('hero-screen').style.display='none';
+  document.getElementById('app').style.display='flex';
+  const navItems=document.querySelectorAll('.nav-item');
+  const idx={quiz:0,gallery:1,occasions:2,services:3,booking:4,reviews:5};
+  switchView(tab, navItems[idx[tab]||0]);
+  loadQ();
+}
+
+/* ══ VIEWS ══ */
+function switchView(id,el){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(el)el.classList.add('active');
+}
+
+/* ══ OCCASIONS ══ */
+function switchOcc(id,el){
+  document.querySelectorAll('.occ-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.occ-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('occ-'+id).classList.add('active');
+  el.classList.add('active');
+}
+
+/* ══ TIME SLOTS ══ */
+document.querySelectorAll('.t-slot').forEach(s=>{
+  s.addEventListener('click',function(){
+    document.querySelectorAll('.t-slot').forEach(x=>x.classList.remove('chosen'));
+    this.classList.add('chosen');
+    const t=this.textContent.trim();
+    document.getElementById('b-time').value=t;
+  });
+});
+
+/* ══ MODAL ══ */
+function openModal(service){
+  if(service)document.getElementById('qb-service').value=service;
+  // Pre-fill name from logged-in user
+  const savedName = getLoggedInName();
+  if(savedName && !document.getElementById('qb-name').value) {
+    document.getElementById('qb-name').value = savedName;
+  }
+  document.getElementById('qb-email-status').innerHTML='';
+  document.getElementById('bookModal').classList.add('open');
+}
+function closeModal(){document.getElementById('bookModal').classList.remove('open')}
+document.getElementById('bookModal').addEventListener('click',function(e){if(e.target===this)closeModal()});
+
+/* ══ QUICK BOOK with EmailJS ══ */
+async function submitQuickBook(){
+  const n   = document.getElementById('qb-name').value.trim();
+  const p   = document.getElementById('qb-phone').value.trim();
+  const sv  = document.getElementById('qb-service').value;
+  const dt  = document.getElementById('qb-date').value;
+  const nt  = document.getElementById('qb-note').value.trim();
+
+ if(!n||!p||!dt){showToast('🌷','Please fill name, phone & date','warn');return}
+
+  const userEmail = getLoggedInEmail();
+  if(!userEmail){
+    showToast('⚠️','No email found — please log in again','warn');
+    return;
+  }
+
+  const btn = document.getElementById('qb-submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending… 💌';
+  setEmailStatus('qb-email-status','sending','📨 Sending confirmation email…');
+
+  try {
+    await sendBookingEmail({
+      to_name:  n,
+      to_email: userEmail,
+      service:  sv,
+      date:     dt,
+      time:     'To be confirmed',
+      phone:    p,
+      notes:    nt
+    });
+
+    setEmailStatus('qb-email-status','sent','✅ Confirmation email sent to ' + userEmail);
+    showToast('💅', `Booked for ${n}! Confirmation sent to ${userEmail} 💌`, 'success');
+    closeModal();
+    ['qb-name','qb-phone','qb-date','qb-note'].forEach(id=>document.getElementById(id).value='');
+  } catch(err) {
+    console.error('EmailJS error:', err);
+    setEmailStatus('qb-email-status','failed','⚠️ Email failed — we\'ll confirm via WhatsApp instead');
+    showToast('💅',`Booking noted! We'll confirm via WhatsApp, ${n} 🌸`,'success');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Confirm Appointment 💖';
+  }
+}
+
+/* ══ FULL BOOKING with EmailJS ══ */
+async function submitBooking(){
+  const fn = document.getElementById('b-fname').value.trim();
+  const ln = document.getElementById('b-lname').value.trim();
+  const ph = document.getElementById('b-phone').value.trim();
+  const sv = document.getElementById('b-service').value;
+  const dt = document.getElementById('b-date').value;
+  const tm = document.getElementById('b-time').value;
+  const nt = document.getElementById('b-note').value.trim();
+  const formEmail  = document.getElementById('b-email').value.trim();
+  const userEmail  = formEmail || getLoggedInEmail();
+
+  if(!fn||!ph||!sv||!dt){showToast('🌷','Please fill all required fields','warn');return}
+  if(!userEmail){showToast('⚠️','No email address found — please add your email','warn');return}
+
+  const btn = document.getElementById('book-submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending… 💌';
+  setEmailStatus('book-email-status','sending','📨 Sending your confirmation email…');
+
+  try {
+    // FIXED: Changed the keys here to match what sendBookingEmail() expects
+    await sendBookingEmail({
+      to_name:  fn + (ln ? ' ' + ln : ''),
+      service:  sv,
+      date:     dt,
+      time:     tm || 'To be confirmed',
+      phone:    ph,
+      notes:    nt || 'No additional notes',
+      to_email: userEmail
+    });
+
+    setEmailStatus('book-email-status','sent','✅ Confirmation sent to ' + userEmail);
+    showToast('💅',`Booking confirmed, ${fn}! Email sent to ${userEmail} 💌`,'success');
+
+    // Clear form
+    ['b-fname','b-lname','b-phone','b-email','b-note'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('b-service').value='';
+    document.getElementById('b-date').value='';
+    document.getElementById('b-time').value='';
+
+  } catch(err) {
+    console.error('EmailJS error:', err);
+    setEmailStatus('book-email-status','failed','⚠️ Email failed — we\'ll confirm via WhatsApp');
+    showToast('💅',`Booking noted, ${fn}! We'll confirm via WhatsApp 🌸`,'success');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Confirm Appointment 💅';
+  }
+}
+
+
+/* ══ REVIEWS ══ */
+function submitReview(){
+  const n=document.getElementById('rv-name').value.trim(),
+        r=document.getElementById('rv-rating').value,
+        sv=document.getElementById('rv-service').value,
+        t=document.getElementById('rv-text').value.trim();
+  if(!n||!t){showToast('🌷','Please add name and review','warn');return}
+  const stars='⭐'.repeat(parseInt(r));
+  const mo=new Date().toLocaleString('default',{month:'long',year:'numeric'});
+  const card=document.createElement('div');card.className='review-card';card.style.animation='fadeUp .4s ease both';
+  card.innerHTML=`<div class="review-card-top"><div class="reviewer"><h4>${n}</h4><p>${mo}</p></div><div>${stars}</div></div><p class="review-text">${t}</p><span class="review-service-tag">${sv}</span>`;
+  document.getElementById('reviewsList').prepend(card);
+  showToast('🌟','Thank you for your review! 💖','success');
+  document.getElementById('rv-name').value='';document.getElementById('rv-text').value='';
+}
+
+/* ══════════════════════════════
+   AESTHETIC QUIZ
+══════════════════════════════ */
+const questions=[
+  {q:"What's your dream weekend vibe?",opts:[{t:"Candlelit room, dark music, dramatic poetry",v:"Dark Romance",i:"🕯"},{t:"Thrifting vintage finds and painting",v:"Artsy",i:"🎨"},{t:"Picnic with ribbons, lace, and strawberries",v:"Coquette",i:"🎀"},{t:"Arcade, neon lights, retro fashion",v:"Y2K",i:"🕹"},{t:"Yacht, champagne, quiet luxury",v:"OldMoney",i:"⛵"},{t:"Misty forest walk, fairy lights at dusk",v:"Fairycore",i:"🌿"}]},
+  {q:"Pick your signature accessory:",opts:[{t:"Chunky silver rings + dark liner",v:"Dark Romance",i:"💍"},{t:"Paint-stained tote & big earrings",v:"Artsy",i:"🎒"},{t:"Satin hair bows in every outfit",v:"Coquette",i:"🎀"},{t:"Butterfly clips + platform shoes",v:"Y2K",i:"🦋"},{t:"A classic gold watch",v:"OldMoney",i:"⌚"},{t:"A pressed flower crown",v:"Fairycore",i:"🌸"}]},
+  {q:"Your ideal nail colour this season:",opts:[{t:"Deep burgundy or midnight black",v:"Dark Romance",i:"🖤"},{t:"Abstract strokes in mustard and teal",v:"Artsy",i:"🟡"},{t:"Blush pink or baby pink gloss",v:"Coquette",i:"🩷"},{t:"Holographic silver or hot pink",v:"Y2K",i:"🌈"},{t:"Beige, ivory, or warm nude",v:"OldMoney",i:"🤍"},{t:"Mossy green or lavender",v:"Fairycore",i:"🌿"}]},
+  {q:"Your dream nail shape:",opts:[{t:"Long stiletto or coffin — dramatic",v:"Dark Romance",i:"🔮"},{t:"Short, natural — art over length",v:"Artsy",i:"✏"},{t:"Rounded almond — feminine",v:"Coquette",i:"🌷"},{t:"Long square — bold statement",v:"Y2K",i:"💅"},{t:"Clean oval — timeless",v:"OldMoney",i:"🍂"},{t:"Short squoval — earthy",v:"Fairycore",i:"🍄"}]},
+  {q:"Pick a nail finish you love:",opts:[{t:"Matte black with chrome details",v:"Dark Romance",i:"⚫"},{t:"Mixed finishes on each nail",v:"Artsy",i:"🎭"},{t:"High-gloss pink jelly",v:"Coquette",i:"✨"},{t:"Holo glitter that shifts in light",v:"Y2K",i:"💫"},{t:"Soft satin or sheer gloss",v:"OldMoney",i:"🕯"},{t:"Iridescent pearl or duochrome",v:"Fairycore",i:"🌙"}]},
+  {q:"Which nail art element speaks to you?",opts:[{t:"Roses, thorns, spiderweb lace",v:"Dark Romance",i:"🥀"},{t:"Abstract brushstrokes, no rules",v:"Artsy",i:"🖌"},{t:"Tiny bows, pearls, lace prints",v:"Coquette",i:"🎀"},{t:"Rhinestones, butterfly stickers",v:"Y2K",i:"💎"},{t:"Barely-there minimalist lines",v:"OldMoney",i:"—"},{t:"Pressed flowers, mushrooms, stars",v:"Fairycore",i:"🍄"}]},
+  {q:"Describe your fashion palette:",opts:[{t:"All black, deep red, velvet",v:"Dark Romance",i:"🖤"},{t:"Eclectic, colourful, upcycled",v:"Artsy",i:"🎨"},{t:"Pastels, lace, vintage pieces",v:"Coquette",i:"🌸"},{t:"Metallics, neons, plastic",v:"Y2K",i:"🤖"},{t:"Camel, ivory, navy, plaid",v:"OldMoney",i:"👔"},{t:"Cottagecore, floral, earthy",v:"Fairycore",i:"🌻"}]},
+  {q:"Your iconic nail inspo?",opts:[{t:"Gothic editorial — dark goddess energy",v:"Dark Romance",i:"🔮"},{t:"Art Basel — each nail a canvas",v:"Artsy",i:"🖼"},{t:"Parisian femme — effortlessly pretty",v:"Coquette",i:"🗼"},{t:"Y2K celeb — maximum impact",v:"Y2K",i:"📼"},{t:"Old money heiress — no flex needed",v:"OldMoney",i:"🏛"},{t:"Forest fairy — otherworldly beauty",v:"Fairycore",i:"🧚"}]}
+];
+
+const aesthetics={
+  "Dark Romance":{name:"Dark Romance",desc:"You're drawn to depth, mystery, and the beauty in darkness. Your nails are statement pieces — bold, dramatic, unforgettable.",nails:["Deep burgundy matte","Black with rose gold chrome","Lace stamp on midnight","Crimson stiletto with thorns","Moody plum + silver foil"],imgs:["https://i.pinimg.com/736x/4d/79/d5/4d79d5e2a568bc57f1efbba4d8bf21fc.jpg","https://i.pinimg.com/736x/0b/c2/52/0bc25244420af17497d2965171658234.jpg","https://i.pinimg.com/736x/45/61/12/45611275794822e5120357a621163f60.jpg","https://i.pinimg.com/736x/06/a9/69/06a969c1e74d5239fafaaa2c83ed8672.jpg","https://i.pinimg.com/736x/c5/aa/34/c5aa347bd22da83e41244ed59b10df32.jpg","https://i.pinimg.com/736x/0f/40/06/0f4006fa539e35d6ca8b78240937e3c4.jpg"]},
+  "Artsy":{name:"Artsy",desc:"Raw creativity, fearless expression. You want every nail to be different. Art over convention — always.",nails:["Abstract brushstroke art","Mixed pastels each nail","Colour-blocking geometry","Oil-painting swirls","Negative space designs"],imgs:["https://i.pinimg.com/736x/05/8e/eb/058eebf2499f3a9f8df81ccfcc2e269e.jpg","https://i.pinimg.com/736x/24/42/54/244254c24f307a7913657a20e144794d.jpg","https://i1-c.pinimg.com/736x/9d/a3/7b/9da37bbfa6f62f20abf816722a61e886.jpg","https://i.pinimg.com/736x/64/b9/d2/64b9d20fa64cf4d01f929cd801de7f9b.jpg","https://i.pinimg.com/736x/ca/39/ce/ca39ce6644b4dafb595d82659b0d03bf.jpg","https://i.pinimg.com/736x/eb/25/34/eb2534a7d72820e4e0b61cc78cff4d55.jpg"]},
+  "Coquette":{name:"Coquette",desc:"Soft, feminine, dreamily pretty. Your nails whisper luxury with a vintage Parisian touch.",nails:["Blush pink with satin bow","Pearl accent nail","Pastel French with glitter tips","Rosy jelly gloss","Lace print on cream"],imgs:["https://i1-c.pinimg.com/736x/01/ac/a4/01aca4c25f6452218704b1ea1ebeddb2.jpg","https://i.pinimg.com/736x/78/12/37/781237b61a72ef179321faf7eed8b97f.jpg","https://i.pinimg.com/736x/9b/46/11/9b4611990ffac42c31d168ed01665f35.jpg","https://i.pinimg.com/736x/54/18/3e/54183e7fea18443fac11abad6619faff.jpg","https://i1-c.pinimg.com/1200x/be/4b/50/be4b500bf0cbe6e0416e90cdeedd522d.jpg","https://i1-c.pinimg.com/736x/35/f7/a3/35f7a3c0d787ef9c1b9ecfe576433a25.jpg"]},
+  "Y2K":{name:"Y2K",desc:"Futuristic nostalgia — you live for maximum impact, holographic finishes, and early-2000s energy.",nails:["Holo chrome tips","Rhinestone full coverage","Butterfly 3D stickers","Neon airbrushed ombre","Hot pink with silver flakes"],imgs:["https://i.pinimg.com/736x/dc/d6/f5/dcd6f5933baef8c814b8cd4f3383cba2.jpg","https://i.pinimg.com/736x/2b/a7/e4/2ba7e432467a2bf27c08ee9202dd090f.jpg","https://i.pinimg.com/736x/28/a4/51/28a4515b41d9a44e02fa668fd99c4fd3.jpg","https://i1-c.pinimg.com/736x/2e/5a/9b/2e5a9b68ab48a802f8d746cbae0c8e77.jpg","https://i.pinimg.com/736x/61/85/da/6185da4fbddea032c5d13b16903464b0.jpg","https://i1-c.pinimg.com/736x/7d/54/6f/7d546f11458472ce1e74075f5c7050a4.jpg"]},
+  "OldMoney":{name:"Old Money",desc:"Quiet, restrained, immaculately polished. You believe elegance is felt, not announced.",nails:["Warm nude oval gel","Milky white sheer gloss","Navy with micro shimmer","Classic French oval","Beige with gold line"],imgs:["https://i1-c.pinimg.com/736x/29/3a/6d/293a6ddc33c79aef1b2b22d277a8ceca.jpg","https://i.pinimg.com/736x/a6/3b/84/a63b849628ea33c13a8eb01b1b19a714.jpg","https://i.pinimg.com/736x/b3/7d/9b/b37d9ba7e4ec5f2f5945f1f6870c5451.jpg","https://i1-c.pinimg.com/1200x/d1/3b/3a/d13b3ae1de11a01cc298192d849c650b.jpg","https://i.pinimg.com/736x/9d/66/5e/9d665e44932de13c951d1213bb2f0d20.jpg","https://i.pinimg.com/736x/2d/e3/4f/2de34ffbf704203becf02360a377bf0a.jpg"]},
+  "Fairycore":{name:"Fairycore",desc:"Whimsical, magical, nature-kissed. You bring a little enchantment everywhere you go.",nails:["Pressed flower encapsulated","Duochrome aurora shimmer","Mushroom & fern art","Iridescent jelly base","Starlight ombre with stars"],imgs:["https://i1-c.pinimg.com/1200x/89/d8/fd/89d8fdc995d412899abc8c16635568f1.jpg","https://i1-c.pinimg.com/1200x/b7/8b/76/b78b76553192e2411b0ded6f71bcd9d5.jpg","https://i1-c.pinimg.com/1200x/fb/64/8f/fb648fa79d5b6528fb70d3590dd745a9.jpg","https://i1-c.pinimg.com/1200x/1d/62/ea/1d62ea4d617e37c9fd4972b41a6256c5.jpg","https://i.pinimg.com/736x/9d/16/61/9d1661d4567dd7b6f3b404c89289c286.jpg","https://i1-c.pinimg.com/1200x/97/c8/19/97c8194d9beae2eb64fcb3f7a0186109.jpg"]}
+};
+
+let qIdx=0, scores={};
+Object.keys(aesthetics).forEach(k=>scores[k]=0);
+let quizLoaded=false;
+
+function loadQ(){
+  if(quizLoaded&&qIdx===0)return;
+  quizLoaded=true;
+  if(qIdx>=questions.length){showResult();return}
+  const q=questions[qIdx];
+  document.getElementById('quiz-counter').textContent=`Question ${qIdx+1} of ${questions.length}`;
+  document.getElementById('quiz-prog-fill').style.width=((qIdx/questions.length)*100)+'%';
+  const qEl=document.getElementById('quiz-question');
+  qEl.style.opacity=0;
+  setTimeout(()=>{qEl.textContent=q.q;qEl.style.opacity=1;qEl.style.transition='opacity .3s'},60);
+  const optsEl=document.getElementById('quiz-opts');optsEl.innerHTML='';
+  q.opts.forEach((o,i)=>{
+    const d=document.createElement('div');d.className='opt-card';
+    d.style.animation=`fadeUp .38s ease ${i*0.06}s both`;
+    d.innerHTML=`<span class="opt-icon">${o.i}</span><span>${o.t}</span>`;
+    d.addEventListener('click',()=>{scores[o.v]=(scores[o.v]||0)+1;qIdx++;loadQ()});
+    optsEl.appendChild(d);
+  });
+}
+
+function showResult(){
+  const top=Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
+  const a=aesthetics[top];
+  document.getElementById('quizUI').style.display='none';
+  const rUI=document.getElementById('resultUI');rUI.style.display='block';
+  const maxS=Math.max(...Object.values(scores));
+  const sbHTML=Object.entries(scores).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div class="score-row"><div class="score-lbl">${k}</div><div class="score-bar-bg"><div class="score-bar-fill" data-pct="${maxS?(v/maxS*100):0}"></div></div><div class="score-val">${v}</div></div>`).join('');
+  const recsHTML=a.nails.map(n=>`<span class="nail-rec-tag">${n}</span>`).join('');
+  const imgsHTML=a.imgs.map(src=>`<div class="gallery-item" style="opacity:0;animation:fadeUp .5s ease forwards"><img src="${src}" alt loading="lazy"></div>`).join('');
+  rUI.innerHTML=`
+    <div class="result-hero">
+      <div>
+        <div class="result-tag">✿ Your Aesthetic Identity ✿</div>
+        <div class="result-name">${a.name}</div>
+        <p class="result-desc">${a.desc}</p>
+        <div class="nail-recs-label">Recommended Nail Looks</div>
+        <div class="nail-rec-tags">${recsHTML}</div>
+        <div style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap">
+          <button class="btn" onclick="bookAura('${a.name}','${a.nails[0]}')">Book This Look 💅</button>
+          <button class="btn btn-ghost" onclick="restartQuiz()">Retake Quiz 🌸</button>
+        </div>
+      </div>
+      <div class="score-bars">${sbHTML}</div>
+    </div>
+    <h3 style="font-family:var(--font-head);font-size:1.3rem;margin-bottom:14px;color:var(--text)">The Essence — 4 Frames 🌺</h3>
+    <div class="gallery-grid">${imgsHTML}</div>
+  `;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    document.querySelectorAll('.score-bar-fill').forEach(el=>el.style.width=el.dataset.pct+'%');
+  }));
+  showToast('🌸',`Your aura is ${a.name}! ✦`,'success');
+}
+
+function bookAura(auraName,nailLook){
+  document.getElementById('qb-note').value=`Aesthetic: ${auraName}. Suggested look: ${nailLook}`;
+  openModal();
+}
+
+function restartQuiz(){
+  qIdx=0;Object.keys(scores).forEach(k=>scores[k]=0);
+  document.getElementById('resultUI').style.display='none';
+  document.getElementById('quizUI').style.display='block';
+  quizLoaded=false;loadQ();
+}
+emailjs.send(" service_3e6bwln", "template_s3vyb6f", {
+    client_name: formData.name,
+    service_name: formData.service,
+    appointment_date: formData.date,
+    appointment_time: formData.time,
+    duration: formData.duration,
+    phone_number: formData.phone,
+    instagram_handle: "@aura.blush"
+}, "ilpqvl0ONJWliP4uI");
+
+/* init quiz */
+loadQ();
+</script>
+</body>
+</html>
